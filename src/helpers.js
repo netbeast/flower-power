@@ -27,7 +27,6 @@ helper.connectAndSetup = function (flowerPowerAux, done) {
 } 
 
 helper.temperature = function (flowerPower, done) {
-  console.log(flowerPowerAux)
   flowerPower.readAirTemperature(function (err, temperature) {
     if (err) return done(err)
       return done(null, temperature.toFixed(2))
@@ -57,7 +56,6 @@ helper.battery = function (flowerPower, done) {
 
 helper.disconnect = function (value, done) {
   flowerPower.disconnect(function (err) {
-    console.log('Disconnected')
     flowerPower = null
     flowerPowerAux = null
     if (err) return done(err)

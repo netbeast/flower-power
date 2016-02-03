@@ -30,7 +30,7 @@ loadResources(function (err, devices) {
       ], 
     function (err, results){
         if (err) return res.status(500).send(err)
-          return res.json({Temperature: results})
+          return res.json({temperature: results})
     })
   })
 
@@ -44,7 +44,7 @@ loadResources(function (err, devices) {
       ], 
     function (err, results){
         if (err) return res.status(500).send(err)
-          return res.json({Humidity: results})
+          return res.json({humidity: results})
     })
   })
 
@@ -59,7 +59,7 @@ loadResources(function (err, devices) {
       ], 
     function (err, results){
         if (err) return res.status(500).send(err)
-          return res.json({Luminosity: results})
+          return res.json({luminosity: results})
     })
   })
   router.get('/battery/:id', function (req, res, next) {
@@ -72,7 +72,7 @@ loadResources(function (err, devices) {
       ], 
     function (err, results){
         if (err) return res.status(500).send(err)
-          return res.send({Battery: results})
+          return res.send({battery: results})
     })
 
   })
