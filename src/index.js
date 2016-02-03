@@ -6,6 +6,7 @@
 var express = require('express')
 , logger = require('morgan')
 , bodyParser = require('body-parser')
+var path = require('path')
 
 var app = module.exports = express();
 
@@ -15,7 +16,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Declare where are the routes that the pluging are listening
-app.use(require('../routes'))
+app.use(require('./routes'))
+
+app.use(express.static(path.resolve(__dirname, '..')))
 
 // error handlers
 //===============
