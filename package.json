@@ -5,7 +5,7 @@
   "main": "index.js",
   "netbeast": {
     "bootOnLoad": true,
-    "type": "service"
+    "type": "plugin"
   },
   "dependencies": {
     "async": "^1.4.2",
