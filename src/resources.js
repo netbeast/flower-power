@@ -17,7 +17,7 @@ module.exports = function (callback) {
   var objects = []
 
   // Request to the database
-  request.get(process.env.LOCAL_URL + '/api/resources?app=flower-power-plugin',
+  request.get('http://' + process.env.NETBEAST + '/api/resources?app=flower-power-plugin',
   function (err, resp, body) {
     if (err) return callback(err)
     if (!body) return callback()
@@ -53,7 +53,7 @@ module.exports = function (callback) {
     } else {
       //  Use this block to register the found device on the netbeast database
       //  in order to using it later
-      request.post({url: process.env.LOCAL_URL + '/api/resources',
+      request.post({url: 'http://' + process.env.NETBEAST + '/api/resources',
       json: {
         app: 'flower-power-plugin',          // Name of the device brand
         location: 'none',
@@ -68,7 +68,7 @@ module.exports = function (callback) {
         callback
       })
 
-      request.post({url: process.env.LOCAL_URL + '/api/resources',
+      request.post({url: 'http://' + process.env.NETBEAST + '/api/resources',
       json: {
         app: 'flower-power-plugin',          // Name of the device brand
         location: 'none',
@@ -83,7 +83,7 @@ module.exports = function (callback) {
         callback
       })
 
-      request.post({url: process.env.LOCAL_URL + '/api/resources',
+      request.post({url: 'http://' + process.env.NETBEAST + '/api/resources',
       json: {
         app: 'flower-power-plugin',          // Name of the device brand
         location: 'none',
@@ -98,7 +98,7 @@ module.exports = function (callback) {
         callback
       })
 
-      request.post({url: process.env.LOCAL_URL + '/api/resources',
+      request.post({url: 'http://' + process.env.NETBEAST + '/api/resources',
       json: {
         app: 'flower-power-plugin',          // Name of the device brand
         location: 'none',
@@ -112,22 +112,22 @@ module.exports = function (callback) {
         if (err) return callback(err)
       })
 
-    } 
+    }
   })
 
 
-  setTimeout(function () { 
+  setTimeout(function () {
     flowerPower.stopDiscoverAll (callback)
     if (objects.length > 0) {
     objects.forEach(function (hooks) {
-      request.del(process.env.LOCAL_URL + '/api/resources?hook=' + hooks,
+      request.del('http://' + process.env.NETBEAST + '/api/resources?hook=' + hooks,
       function (err, resp, body) {
         if (err) callback(err)
       })
     })
   }
-  callback(null, devices)
+  callback(null, devices.slice())
   devices = []
   }, 10000)
-  
+
 }

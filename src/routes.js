@@ -21,6 +21,8 @@ var loadResources = require('./resources')
 loadResources(function (err, devices) {
   if (err) throw err
 
+  devices = devices || []
+
   router.get('/temperature/:id', function (req, res, next) {
 
     async.waterfall([
