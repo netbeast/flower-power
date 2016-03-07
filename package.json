@@ -7,6 +7,7 @@
     "bootOnLoad": true,
     "type": "plugin"
   },
+  "logo": "logo.png",
   "dependencies": {
     "async": "^1.4.2",
     "body-parser": "^1.14.0",
