@@ -3,6 +3,7 @@ var router = express.Router()
 var async = require('async')
 var helper = require('./helpers')
 var mqtt = require('mqtt')
+var netbeast = require('netbeast')
 
 // Require the discovery function
 var loadResources = require('./resources')
@@ -10,8 +11,10 @@ var loadResources = require('./resources')
 var client = mqtt.connect('ws://' + process.env.NETBEAST)
 
 loadResources(function (err, devices) {
-  if (err) console.log(new Error(err))
-
+  if (err) {
+    console.trace(new Error(err))
+    netbeast().error(err, 'Something wrong!')
+  }
   router.get('/temperature/:id', function (req, res, next) {
     async.waterfall([
       async.apply(helper.getFlowerPowerById, devices, req.params.id),
