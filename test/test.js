@@ -15,10 +15,7 @@
 
 var request = require('request')
 
-var args = {volume: '10', status: 'play' ,track: 'https://archive.org/download/testmp3testfile/mpthreetest.mp3'}
-request.post({
-  url: 'http://localhost:8000/i/flower-power-plugin/pablogay/00:1a:7d:da:71:13',
-  json: args
+request.get('http://localhost:8000/i/flower-power-plugin/temperature/00:1a:7d:da:71:13',
 }, function (err, resp, body) {
   if (err) console.log(err)
   console.log(body)
