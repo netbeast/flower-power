@@ -1,9 +1,8 @@
 var request = require('request')
 var flowerPower = require('flower-power')
 
-var devices = []
-
 module.exports = function (callback) {
+  var devices = []
   var objects = []
 
   // Request to the database
@@ -79,6 +78,9 @@ module.exports = function (callback) {
 
   setTimeout(function () {
     flowerPower.stopDiscoverAll(callback)
+  }, 10000)
+
+  setTimeout(function () {
     if (objects.length > 0) {
       objects.forEach(function (hooks) {
         request.del('http://' + process.env.NETBEAST + '/api/resources?hook=/temperature/' + hooks,
@@ -100,5 +102,5 @@ module.exports = function (callback) {
       })
     }
     callback(null, devices)
-  }, 15000)
+  }, 20000)
 }

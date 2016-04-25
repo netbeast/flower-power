@@ -61,7 +61,12 @@ loadResources(function (err, devices) {
   router.get('/discover', function (req, res, next) {
     loadResources(function (err, devices) {
       if (err) return res.status(500).send(err)
-      res.json(devices)
+      if (devices.length) {
+        devices.forEach(function (device) {
+          delete device._peripheral._noble
+        })
+      }
+      return res.json(devices)
     })
   })
 
